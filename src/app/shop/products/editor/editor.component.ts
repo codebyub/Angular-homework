@@ -27,6 +27,7 @@ export class EditorComponent implements OnInit {
     this.activeRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
+        // tslint:disable-next-line:radix
         this.httpClient.getProduct(Number.parseInt(id)).subscribe(p => this.product = p);
       }
     });

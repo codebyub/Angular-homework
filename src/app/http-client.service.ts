@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './shop/products/Product';
+import {User} from './shop/users/User';
 
 const BASE_URL = 'http://localhost:8080/api';
 const HTTP_OPTIONS = {headers: new HttpHeaders({
@@ -30,4 +31,21 @@ export class HttpClientService {
   saveProduct(product: Product) {
     return this.httpClient.post(`${BASE_URL}/products/save`, JSON.stringify(product), HTTP_OPTIONS);
   }
+
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${BASE_URL}/users/`);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${BASE_URL}/users/single/${id}`);
+  }
+
+  saveUser(user: User) {
+    return this.httpClient.post(`${BASE_URL}/users/save`, JSON.stringify(user), HTTP_OPTIONS);
+  }
+
+  removeUser(id: number) {
+    this.httpClient.delete(`${BASE_URL}/users/remove/${id}`);
+  }
+
 }
