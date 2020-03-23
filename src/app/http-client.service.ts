@@ -1,20 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Product} from './shop/products/Product';
 import {User} from './shop/users/User';
 
 const BASE_URL = 'http://localhost:8080/api';
-const HTTP_OPTIONS = {headers: new HttpHeaders({
+const HTTP_OPTIONS = {
+  headers: new HttpHeaders({
     'Content-Type': 'application/json'
-  })};
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${BASE_URL}/products`);
@@ -36,7 +39,7 @@ export class HttpClientService {
     return this.httpClient.get<User[]>(`${BASE_URL}/users/`);
   }
 
-  getUser(id: number): Observable<User> {
+  getUser(id: number) {
     return this.httpClient.get<User>(`${BASE_URL}/users/single/${id}`);
   }
 
@@ -45,7 +48,7 @@ export class HttpClientService {
   }
 
   removeUser(id: number) {
-    this.httpClient.delete(`${BASE_URL}/users/remove/${id}`);
+    return this.httpClient.delete(`${BASE_URL}/users/remove/${id}`);
   }
 
 }
