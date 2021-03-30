@@ -1,7 +1,10 @@
 # Shop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+
 It's a CRUD project from post grade studies.
+
+If you want to have access to Spring end points please check another project: [Shop Back End](https://github.com/codebyub/Thymeleaf-homework).
 
 ## Development server
 
